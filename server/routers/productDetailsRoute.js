@@ -7,20 +7,21 @@ const path = require("path");
 const { productDetailsUpload, getProductFiles } = require("../controllers/productDetailsController.js");
 
 
-// Uploading CSV File Into Folder
+// Uploading File Into Local Folder
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        // Set the destination folder for CSV file uploads
+
+        // Set the destination folder for file uploads
         cb(null, './public/uploads');
     },
     filename: (req, file, cb) => {
+        // console.log('file:', file)
         // Set the filename for uploaded files
         cb(null, file.originalname);
     },
 });
 
 const upload = multer({ storage : storage });
-
 
 // Getting Data Length || METHOD : GET
 router.get("/get-all-product", getProductFiles);

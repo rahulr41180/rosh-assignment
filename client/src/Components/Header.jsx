@@ -1,8 +1,10 @@
 
-import { FaShopware } from "react-icons/fa";
+import react from "react";
 
 import { NavLink, Link } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+
+import { FaShopware } from "react-icons/fa";
+import toast, { Toaster } from 'react-hot-toast';
 
 export const Header = () => {
 
@@ -15,12 +17,11 @@ export const Header = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
 
-                        <Link to={"/"} className="navbar-brand" style={{ textTransform: "none" }}><FaShopware /> File-Upload</Link>
-                        <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <Link to={"/"} className="navbar-brand" style={{ textTransform: "none" }}><FaShopware /> azure-task</Link>
+                        <ul className="navbar-nav mb-2 mb-lg-0">
                             <li className="nav-item">
                                 <NavLink to={"/"} className="nav-link">Home</NavLink>
                             </li>
-
                         </ul>
                     </div>
                 </div>

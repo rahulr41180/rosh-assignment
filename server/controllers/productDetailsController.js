@@ -2,12 +2,14 @@
 const { BlobServiceClient, StorageSharedKeyCredential } = require("@azure/storage-blob");
 
 const azure = require("azure-storage");
-
 const accountName = process.env.ACCOUNT_NAME;
 const accountKey = process.env.ACCOUNT_KEY;
 const containerName = process.env.CONTAINER_NAME;
 const stream = require("stream");
 const blobsService = azure.createBlobService(accountName, accountKey);
+
+// Function For Uploading Files
+
 
 const productDetailsUpload = async (req, res) => {
 
@@ -28,29 +30,29 @@ const productDetailsUpload = async (req, res) => {
                     error : error
                 })
             } else {
+
                 return res.status(201).json({
                     status : true,
-
                     result : result
                 })
 
             }
         })
-
     } catch (error) {
         res.status(500).send({
+
             status: false,
             error: error.message
         })
     }
 }
 
-
+// Function For Getting All Files
 const getProductFiles = async(req, res) => {
     try {
+
         blobsService.listBlobsSegmented(containerName, null, (error, result, response) => {
             if(error) {
-
                 return res.status(500).send({
                     status : false,
                     error : error
@@ -58,6 +60,7 @@ const getProductFiles = async(req, res) => {
             } else {
                 const files = result.entries.map((element) => {
                     return {
+
                         fileName : element.name,
                         url : blobsService.getUrl(containerName, element.name)
                     }
@@ -77,6 +80,7 @@ const getProductFiles = async(req, res) => {
 }
 
 module.exports = {
+    
     productDetailsUpload,
     getProductFiles
 }
